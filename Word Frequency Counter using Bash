@@ -1,0 +1,46 @@
+# Word Frequency Counter using Bash
+
+## Problem Statement
+
+Write a bash script to calculate the frequency of each word in a text file `words.txt`.
+
+### Assumptions
+
+- The file contains only lowercase characters and space `' '` characters.
+- Each word consists of lowercase characters only.
+- Words are separated by one or more whitespace characters.
+- Each word's frequency count is unique.
+- Output should be sorted in descending order of frequency.
+
+---
+
+## Example
+
+### Input (`words.txt`)
+
+the day is sunny the the  
+the sunny is is  
+
+### Output
+
+the 4  
+is 3  
+sunny 2  
+day 1  
+
+---
+
+## Approach
+
+1. Convert spaces into new lines (so each word appears on its own line).
+2. Sort the words.
+3. Count occurrences using `uniq -c`.
+4. Sort the result numerically in descending order.
+5. Format output as: word frequency.
+
+---
+
+## Solution (One-line Unix Pipeline)
+
+```bash
+tr -s ' ' '\n' < words.txt | sort | uniq -c | sort -nr | awk '{print $2, $1}'
